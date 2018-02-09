@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Week2 Exercise 5</title>
+    <script type="text/javascript" src="../d3.js"></script>
+
+    <style type="text/css">
+        div.bar {
+            display: inline-block;
+            width: 20px;
+            height: 75px;
+            background-color: teal;
+            margin-right: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+    var h = 400
+    var w = 600
+    var offset = 3
+
+    var rowConverter = function(d){
+        return d.data;
+    }
+
+    d3.csv("w2_presidents.csv", rowConverter, function(data){
+        dataset = data;
+        d3.select("body")
+        .append("p")
+        .attr("hey")
+        plot2_1();
+        plot2_4();
+    });
+
+    var plot2_1 = function(){
+
+        d3.select("body")
+        .append("h1")
+        .text("Plot of figure 2-1")
+
+        //Construct SVG
+        var svg = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+        //Make circles for normal dot-plot
+        svg.selectAll("circle_dot")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr("cx", function(d){
+            return offset + d * 4;
+        })
+        .attr("cy", h/10)
+        .attr("r", 3);
+
+        //Make circles for jitter plot
+        svg.selectAll("circle_jitter")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr("cx", function(d){
+            return offset+ d * 4;
+        })
+        .attr("cy", function(d){
+            return h/2 + (Math.random()- 0.5)*80;
+        })
+        .attr("r", 4)
+        .attr("fill-opacity", 0)
+        .attr("stroke", "black")
+        .attr("stroke-width", 1);
+
+        svg.append("svg:title")
+        .text(function(d) { return "My color is"});
+
+
+    }
+
+    var plot2_4 = function(){
+
+        d3.select("body")
+        .append("h1")
+        .text("Plot of figure 2-4")
+
+        var hist_data = [  1.,   0.,   0.,   0.,   0.,   0.,   1.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   1.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   2.,   0.,   0.,   1.,   0.,
+         1.,   0.,   0.,   0.,   0.,   0.,   0.,   1.,   0.,   0.,   0.,
+         0.,   0.,   2.,  14.,   1.,   0.,   0.,   0.,   0.,   1.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   1.,   0.,   0.,   0.,   0.,
+         2.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   1.,   0.,   1.,   0.,   1.,   0.,  10.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0.,   1.]
+
+        var barpadding = 1
+        var h = 100
+        var scaleF = 7
+        var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h);
+
+        svg.selectAll("rect")
+            .data(hist_data)
+            .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return i * (w / hist_data.length);
+            })
+            .attr("y", function(d){
+                return h - (d*scaleF);
+            })
+            .attr("width", w / hist_data.length - barpadding)
+            .attr("height", function(d){
+                return d * scaleF;
+            })
+            .attr("fill-opacity", 0)
+            .attr("stroke", "black")
+            .attr("stoke-width", 1);
+
+        }
+
+    </script>
+</body>
+
+</html>
