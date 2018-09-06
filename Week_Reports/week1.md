@@ -10,6 +10,12 @@ Currently we have 142 videos, with a total duration of 19 mins
 
 More videos are set to come in from the sellers during the next two weeks. I have created scripts for renaming the video files and collecting stats. A script for extracting frames has been made but need to be customized to choose specific part of frames.
 
+
+
+It took a bit of time to get set up in the new space. Much of the time this week has been spent on creating and exploring tools for managing and annotating the incoming data. Especially BeaverDam took some time but seems like some really promising software for creating annotation and deploying a HIT to MTurk.
+
+
+
 - [x] Get set up with the new space
 - [x] script for renaming videos
 - [x] script to collect stats about videos
@@ -32,7 +38,7 @@ More videos are set to come in from the sellers during the next two weeks. I hav
 
 ### Status according to project plan
 
-...
+Done initial data exploration, created some tools and thought a bit more about the problem and what needs to be done moving forward which was the goal for this week. Next week is more intense literature study and enhancing the project plan, essentially deciding how I will go about doing this project. 
 
 ### Literature
 
@@ -77,6 +83,7 @@ More videos are set to come in from the sellers during the next two weeks. I hav
 Data should be coming in, so need to set up last part of the framework for processing the incomming data. Also have to get a better overview of literature which will partly be done tomorrow (Friday) when I´m not at trackman.
 
 - [ ] Look into docker
+- [ ] Write introduction to the report.
 - [ ] Annotate bounding box of the frames
 - [ ] Figure out which computer to use for DL applications
 - [ ] Sign contract
